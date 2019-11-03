@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import SearchPage from './components/SearchPage';
+import dotenv from 'dotenv';
 import axios from 'axios';
 
-
+dotenv.config();
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ class App extends Component {
   getResults = (e) => {
     e.preventDefault()
     console.log('getResults')
-    const apiURL = 'http://api.edamam.com/search?q=chicken&app_id=247f03df&ap_key=6773d74e92e1ad82a068939623de93d9&from=0&to=5'
+    const apiURL = `http://api.edamam.com/search?q=chicken&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=5`
     axios({
       method: 'get',
       url: apiURL
