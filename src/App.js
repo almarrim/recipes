@@ -15,15 +15,16 @@ class App extends Component {
 
   getResults = (e) => {
     e.preventDefault()
-    console.log('getResults')
     const apiURL = `http://api.edamam.com/search?q=chicken&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=5`
     axios({
       method: 'get',
       url: apiURL
     })
       .then(res => {
-        console.log('here in api')
-        console.log(res)
+        this.setState({
+          recipes: res.data.hits,
+        })
+        console.log('this is recipe', this.state.recipes)
       })
       .catch(console.error())
   }
