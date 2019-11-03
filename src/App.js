@@ -27,16 +27,28 @@ class App extends Component {
       // recipes: res.data.hits,
       recipes: hits,
     })
-    console.log('this is recipe', this.state.recipes)
     //     })
     //     .catch(console.error())
 
   }
+  faveToggle = (e) => {
+    const favorites = [...this.state.favorites]
+    if (favorites.includes(e.recipe)) {
+      favorites.splice(favorites.indexOf(e.recipe), 1)
+    }
+    else {
+      favorites.push(e.recipe)
+    }
+
+    this.setState({
+      favorites: favorites
+    })
+  }
   render() {
+    console.log(this.state.favorites)
     return (
       <>
-        {/* <h1>this is app</h1> */}
-        <SearchPage getResults={this.getResults} recipes={this.state.recipes} />
+        <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />
 
       </>
     );

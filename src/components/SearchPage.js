@@ -13,7 +13,7 @@ class SearchPage extends Component {
             // </form>
             <>
                 <SearchForm getResults={this.props.getResults} />
-                <SearchResult recipes={this.props.recipes} />
+                <SearchResult recipes={this.props.recipes} faveToggle={this.props.faveToggle} />
             </>
         );
     }
