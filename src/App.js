@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchPage from './components/SearchPage';
 import dotenv from 'dotenv';
-import axios from 'axios';
+// import axios from 'axios';
+import hits from './hits'
 
 dotenv.config();
 class App extends Component {
@@ -10,29 +11,33 @@ class App extends Component {
     super(props);
     this.state = {
       recipes: [],
+      favorites: [],
     };
   }
 
   getResults = (e) => {
     e.preventDefault()
-    const apiURL = `http://api.edamam.com/search?q=chicken&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=5`
-    axios({
-      method: 'get',
-      url: apiURL
+    // const apiURL = `http://api.edamam.com/search?q=chicken&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=5`
+    // axios({
+    //   method: 'get',
+    //   url: apiURL
+    // })
+    //   .then(res => {
+    this.setState({
+      // recipes: res.data.hits,
+      recipes: hits,
     })
-      .then(res => {
-        this.setState({
-          recipes: res.data.hits,
-        })
-        console.log('this is recipe', this.state.recipes)
-      })
-      .catch(console.error())
+    console.log('this is recipe', this.state.recipes)
+    //     })
+    //     .catch(console.error())
+
   }
   render() {
     return (
       <>
-        <h1>this is app</h1>
+        {/* <h1>this is app</h1> */}
         <SearchPage getResults={this.getResults} recipes={this.state.recipes} />
+
       </>
     );
   }
