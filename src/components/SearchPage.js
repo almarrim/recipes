@@ -5,6 +5,7 @@ import SearchResult from './SearchResult';
 class SearchPage extends Component {
 
     render() {
+        console.log('SearchPage', this.props.recipes)
         return (
             // <form>
             //     <input type="text" name="searchText" />
@@ -12,7 +13,7 @@ class SearchPage extends Component {
             // </form>
             <>
                 <SearchForm getResults={this.props.getResults} />
-                <SearchResult />
+                <SearchResult recipes={this.props.recipes} />
             </>
         );
     }

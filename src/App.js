@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <>
         <h1>this is app</h1>
-        <SearchPage getResults={this.getResults} />
+        <SearchPage getResults={this.getResults} recipes={this.state.recipes} />
       </>
     );
   }
