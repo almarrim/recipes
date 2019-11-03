@@ -6,12 +6,12 @@ const RecipeCard = props => {
     const addit = (e) => {
         console.log('add it')
     }
-    return <div onClick={props.faveToggle}>
+    return <div >
         <img src={props.recipe.image} alt={props.recipe.lable} />
         <h3>{props.recipe.label}</h3>
         <ul>{ingredients}</ul>
         <a href={props.recipe.url}>More info on {`${props.recipe.source}`}</a>
-        <p>Add</p>
+        <p onClick={props.faveToggle}>Add</p>
         <br />
     </div>
 }
