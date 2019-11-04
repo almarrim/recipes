@@ -4,6 +4,8 @@ import SearchPage from './components/SearchPage';
 import dotenv from 'dotenv';
 // import axios from 'axios';
 import hits from './hits'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import FavoritePage from './components/FavoritePage';
 
 dotenv.config();
 class App extends Component {
@@ -33,11 +35,11 @@ class App extends Component {
   }
   faveToggle = (e) => {
     const favorites = [...this.state.favorites]
-    if (favorites.includes(e.recipe)) {
-      favorites.splice(favorites.indexOf(e.recipe), 1)
+    if (favorites.includes(e)) {
+      favorites.splice(favorites.indexOf(e), 1)
     }
     else {
-      favorites.push(e.recipe)
+      favorites.push(e)
     }
 
     this.setState({
@@ -47,10 +49,22 @@ class App extends Component {
   render() {
     console.log(this.state.favorites)
     return (
-      <>
-        <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />
+      // <>
+      //   <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />
+      //   <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} />
+      // </>
 
-      </>
+      <Router>
+        <nav>
+          <Link to='/'>search</Link>
+          <Link to='/mylist'>thelist</Link>
+        </nav>
+        <Switch>
+          <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />} />
+          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} />} />
+        </Switch>
+      </Router>
+
     );
   }
 }

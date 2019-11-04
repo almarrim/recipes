@@ -3,9 +3,6 @@ const RecipeCard = props => {
     const ingredients = props.recipe.ingredientLines.map((item, index) => {
         return <li key={index}>{item}</li>
     })
-    const addit = (e) => {
-        console.log('add it')
-    }
     return <div >
         <img src={props.recipe.image} alt={props.recipe.lable} />
         <h3>{props.recipe.label}</h3>
