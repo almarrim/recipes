@@ -1,10 +1,33 @@
 import React, { Component } from 'react'
+import NoteForm from './noteForm';
 
 class Note extends Component {
-    state = {}
+    constructor(props) {
+        super(props);
+        this.state = {
+            noteBox: '',
+            noteValue: '',
+
+        }
+    }
+    getText = (e) => {
+        e.preventDefault()
+        console.log('here in the e', e.target)
+        this.setState({
+            noteValue: e.target.value
+        })
+    }
+    handleChange = (e) => {
+        this.setState({ noteBox: e.target.value })
+
+    }
     render() {
+        console.log(this.state.noteBox)
         return (
-            <h1>This is note</h1>
+            <>
+                <NoteForm getText={this.getText} handleChange={this.handleChange} />
+
+            </>
         );
     }
 }
