@@ -3,11 +3,17 @@ import SearchPage from './SearchPage';
 import SearchResult from './SearchResult';
 
 class FavoritePage extends Component {
+    // constructor(props) {
+    //     super(props),
+    //     this.state={
+    //         inFave:true,
+    //     }
+    // }
     render() {
 
         return (<div>
             <h1>Here is favorite page</h1>
-            <SearchResult recipes={this.props.favorites} faveToggle={this.props.faveToggle} />
+            <SearchResult recipes={this.props.favorites} faveToggle={this.props.faveToggle} inFave={true} />
 
         </div>
         );

@@ -5,11 +5,10 @@ import SearchResult from './SearchResult';
 class SearchPage extends Component {
 
     render() {
-        console.log('SearchPage', this.props.recipes)
         return (
             <>
                 <SearchForm getResults={this.props.getResults} />
-                <SearchResult recipes={this.props.recipes} faveToggle={this.props.faveToggle} />
+                <SearchResult recipes={this.props.recipes} faveToggle={this.props.faveToggle} inFave={false} />
             </>
         );
     }

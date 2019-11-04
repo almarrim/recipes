@@ -37,9 +37,11 @@ class App extends Component {
     const favorites = [...this.state.favorites]
     if (favorites.includes(e)) {
       favorites.splice(favorites.indexOf(e), 1)
+      console.log(`${e.recipe.label} has been removed from your favorite`)
     }
     else {
       favorites.push(e)
+      console.log(`${e.recipe.label} has been added to your favorite`)
     }
 
     this.setState({
@@ -47,7 +49,6 @@ class App extends Component {
     })
   }
   render() {
-    console.log(this.state.favorites)
     return (
       // <>
       //   <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />
@@ -56,7 +57,7 @@ class App extends Component {
 
       <Router>
         <nav>
-          <Link to='/'>search</Link>
+          <Link to='/'>search</Link>{' | '}
           <Link to='/mylist'>thelist</Link>
         </nav>
         <Switch>
