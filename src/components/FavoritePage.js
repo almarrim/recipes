@@ -13,6 +13,7 @@ class FavoritePage extends Component {
 
         return (<div>
             <h1>Here is favorite page</h1>
+            <button onClick={this.props.deleteAll}>Delete All</button>
             <SearchResult recipes={this.props.favorites} faveToggle={this.props.faveToggle} inFave={true} />
 
         </div>

@@ -48,6 +48,12 @@ class App extends Component {
       favorites: favorites
     })
   }
+  deleteAll = () => {
+    console.log('yoyoyo')
+    this.setState({
+      favorites: []
+    })
+  }
   render() {
     return (
       // <>
@@ -62,7 +68,7 @@ class App extends Component {
         </nav>
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />} />
-          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} />} />
+          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} />} />
         </Switch>
       </Router>
 

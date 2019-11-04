@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NoteForm from './noteForm';
+import NoteBoard from './noteBoard';
 
 class Note extends Component {
     constructor(props) {
@@ -12,21 +13,27 @@ class Note extends Component {
     }
     getText = (e) => {
         e.preventDefault()
-        console.log('here in the e', e.target)
         this.setState({
-            noteValue: e.target.value
+            noteValue: this.state.noteBox,
+            noteBox: ''
         })
+
     }
     handleChange = (e) => {
         this.setState({ noteBox: e.target.value })
-
     }
+    deleteIt = () => {
+        this.setState({
+            noteValue: '',
+        })
+    }
+
     render() {
-        console.log(this.state.noteBox)
+        console.log("we are in render", this.state.noteBox, "next is noteVAlue", this.state.noteValue, "after the value")
         return (
             <>
-                <NoteForm getText={this.getText} handleChange={this.handleChange} />
-
+                <NoteForm getText={this.getText} handleChange={this.handleChange} noteBox={this.state.noteBox} />
+                <NoteBoard noteValue={this.state.noteValue} deleteIt={this.deleteIt} />
             </>
         );
     }
