@@ -29,7 +29,6 @@ class Note extends Component {
     }
 
     render() {
-        console.log("we are in render", this.state.noteBox, "next is noteVAlue", this.state.noteValue, "after the value")
         return (
             <>
                 <NoteForm getText={this.getText} handleChange={this.handleChange} noteBox={this.state.noteBox} />

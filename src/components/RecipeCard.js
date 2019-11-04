@@ -1,5 +1,6 @@
 import React from 'react'
 import Note from './note'
+import Mark from './Mark'
 const RecipeCard = props => {
     const ingredients = props.recipe.ingredientLines.map((item, index) => {
         return <li key={index}>{item}</li>
@@ -12,6 +13,7 @@ const RecipeCard = props => {
         <p onClick={props.faveToggle}>Add</p>
         <br />
         {(props.inFave) ? <Note /> : null}
+        {(props.inFave) ? <Mark recipe={props.recipe} toggleMark={props.toggleMark} oldOnes={props.oldOnes}/> : null}
     </div>
 }
 export default RecipeCard;

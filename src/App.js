@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       recipes: [],
       favorites: [],
+      // oldOnes: [],
     };
   }
 
@@ -49,11 +50,29 @@ class App extends Component {
     })
   }
   deleteAll = () => {
-    console.log('yoyoyo')
     this.setState({
       favorites: []
     })
   }
+//   toggleMark = (e) => {
+//     const oldOnes = this.state.oldOnes
+//     console.log('recipe is ',e,' oldOnes ',oldOnes)
+//     if (oldOnes.includes(e)) {
+//       console.log('it is in status')
+//       oldOnes.splice(oldOnes.indexOf(e), 1)
+//     }
+//     else {
+//       console.log('in else')
+//       oldOnes.push(e)
+//     }
+//     this.setState({
+//       oldOnes: oldOnes
+//     });
+//   }
+// resetNew=()=>{
+//   console.log('in resetnew')
+//   this.setState({status:'New',oldOnes:[]})
+// }
   render() {
     return (
       // <>
@@ -68,7 +87,7 @@ class App extends Component {
         </nav>
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />} />
-          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} />} />
+          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes}/>} />
         </Switch>
       </Router>
 
