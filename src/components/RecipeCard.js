@@ -13,9 +13,9 @@ const RecipeCard = props => {
         <h3>{props.recipe.label}</h3>
         <ul>{ingredients}</ul>
         <a href={props.recipe.url}>More info on {`${props.recipe.source}`}</a>
-        <p onClick={props.faveToggle}>
-            <AddIcon favorites={props.favorites} item={props.item} />
-        </p>
+
+        <AddIcon faveToggle={props.faveToggle} favorites={props.favorites} item={props.item} />
+
         <br />
         {(props.inFave) ? <Note /> : null}
         {(props.inFave) ? <Mark recipe={props.recipe} toggleMark={props.toggleMark} oldOnes={props.oldOnes} /> : null}

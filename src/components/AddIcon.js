@@ -2,9 +2,11 @@ import React from 'react'
 
 const AddIcon = props => {
 
-    return <i className="material-icons" >
+    return <p onClick={props.faveToggle}>
+        <i className="material-icons" >
 
-        {(props.favorites.includes(props.item)) ? "remove" : "add"}
-    </i>
+            {(props.favorites.includes(props.item)) ? "remove" : "add"}
+        </i>
+    </p>
 }
 export default AddIcon
