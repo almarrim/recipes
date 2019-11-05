@@ -54,25 +54,25 @@ class App extends Component {
       favorites: []
     })
   }
-//   toggleMark = (e) => {
-//     const oldOnes = this.state.oldOnes
-//     console.log('recipe is ',e,' oldOnes ',oldOnes)
-//     if (oldOnes.includes(e)) {
-//       console.log('it is in status')
-//       oldOnes.splice(oldOnes.indexOf(e), 1)
-//     }
-//     else {
-//       console.log('in else')
-//       oldOnes.push(e)
-//     }
-//     this.setState({
-//       oldOnes: oldOnes
-//     });
-//   }
-// resetNew=()=>{
-//   console.log('in resetnew')
-//   this.setState({status:'New',oldOnes:[]})
-// }
+  //   toggleMark = (e) => {
+  //     const oldOnes = this.state.oldOnes
+  //     console.log('recipe is ',e,' oldOnes ',oldOnes)
+  //     if (oldOnes.includes(e)) {
+  //       console.log('it is in status')
+  //       oldOnes.splice(oldOnes.indexOf(e), 1)
+  //     }
+  //     else {
+  //       console.log('in else')
+  //       oldOnes.push(e)
+  //     }
+  //     this.setState({
+  //       oldOnes: oldOnes
+  //     });
+  //   }
+  // resetNew=()=>{
+  //   console.log('in resetnew')
+  //   this.setState({status:'New',oldOnes:[]})
+  // }
   render() {
     return (
       // <>
@@ -86,8 +86,8 @@ class App extends Component {
           <Link to='/mylist'>thelist</Link>
         </nav>
         <Switch>
-          <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />} />
-          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes}/>} />
+          <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} />} />
+          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} />} />
         </Switch>
       </Router>
 
