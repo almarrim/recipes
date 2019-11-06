@@ -14,6 +14,8 @@ class App extends Component {
     this.state = {
       recipes: [],
       favorites: [],
+      noteValue: '',
+      noteBox: '',
       // oldOnes: [],
     };
   }
@@ -54,6 +56,27 @@ class App extends Component {
       favorites: []
     })
   }
+  getText = (e) => {
+    e.preventDefault()
+    
+    console.log('getText', this.state.noteBox)
+    this.setState({
+        noteValue: this.state.noteBox,
+        noteBox: ''
+    })
+
+}
+deleteIt = () => {
+    console.log('deleteIt')
+    this.setState({
+        noteValue: '',
+    })
+};
+handleChange = (e) => {
+    console.log('handleChange')
+    this.setState({ noteBox: e.target.value })
+
+}
   //   toggleMark = (e) => {
   //     const oldOnes = this.state.oldOnes
   //     console.log('recipe is ',e,' oldOnes ',oldOnes)
@@ -90,7 +113,7 @@ class App extends Component {
         </nav>
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} />} />
-          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} />} />
+          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox}/>} />
         </Switch>
       </Router>
 

@@ -10,6 +10,9 @@ constructor(props){
         ingSide:true,
         showMore:false,
         showWord:'...more',
+        noteValue: '',
+        noteBox: '',
+
 
     }
 }
@@ -29,6 +32,7 @@ switchNote= ()=> {
     })
 }
 switchIng= ()=> {
+    console.log('ingside')
     this.setState({
 
         noteSide:false,
@@ -41,6 +45,28 @@ showMore=()=>{
         showWord:(this.state.showWord=='...more')?'Less.':'...more',
     })
 }
+// getText = (e) => {
+//     e.preventDefault()
+    
+//     console.log('getText', this.state.noteBox)
+//     this.setState({
+//         noteValue: this.state.noteBox,
+//         noteBox: ''
+//     })
+
+// }
+// deleteIt = () => {
+//     console.log('deleteIt')
+//     this.setState({
+//         noteValue: '',
+//     })
+// };
+// handleChange = (e) => {
+//     console.log('handleChange')
+//     this.setState({ noteBox: e.target.value })
+
+// }
+
 render(){
 
     return <div className="card col-md-3 col-sm-6 col-12"  style={{width: "18rem" }}>
@@ -51,7 +77,7 @@ render(){
         <ul className="nav nav-tabs card-header-tabs">
         
         <li className="nav-item">
-        <a className="nav-link" onClick={this.swithchIng}>Ingredients</a>
+        <a className="nav-link" onClick={this.switchIng}>Ingredients</a>
         </li>
 {(this.props.inFave) ? <li className="nav-item">
 <a className="nav-link" onClick={this.switchNote}>Notes</a>
@@ -71,11 +97,10 @@ render(){
         <a  className="btn btn-primary" href={this.props.recipe.url}>More info on {`${this.props.recipe.source}`}</a>
         {(this.props.inFave) ? <Mark recipe={this.props.recipe} toggleMark={this.props.toggleMark} oldOnes={this.props.oldOnes} /> : null}
         <AddIcon faveToggle={this.props.faveToggle} favorites={this.props.favorites} item={this.props.item} />
-        </div>:null}
-        {(this.state.noteSide)?
+        </div>:
         <div>
-        {(this.props.inFave) ? <Note /> : null}
-        </div>:null}
+        {(this.props.inFave) ? <Note getText={this.props.getText} deleteIt={this.props.deleteIt} handleChange={this.props.handleChange} noteValue={this.props.noteValue} noteBox={this.props.noteBox} /> : null}
+        </div>}
         </div>
         </div>
         </div>
