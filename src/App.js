@@ -19,7 +19,7 @@ class App extends Component {
       noteBox: '',
       starsObject:{},
       allStars:[],
-      // oldOnes: [],
+      oldOnes: [],
     };
   }
 
@@ -175,10 +175,25 @@ addStars =(index, label)=>{
   //       oldOnes: oldOnes
   //     });
   //   }
-  // resetNew=()=>{
-  //   console.log('in resetnew')
-  //   this.setState({status:'New',oldOnes:[]})
-  // }
+  toggleMark = (e) => {
+    const oldOnes = this.state.oldOnes
+    console.log('recipe is ',e,' oldOnes ',oldOnes)
+    if (oldOnes.includes(e)) {
+      console.log('it is in status')
+      oldOnes.splice(oldOnes.indexOf(e), 1)
+    }
+    else {
+      console.log('in else')
+      oldOnes.push(e)
+    }
+    this.setState({
+      oldOnes: oldOnes
+    });
+  }
+  resetNew=()=>{
+    console.log('in resetnew')
+    this.setState({status:'New',oldOnes:[]})
+  }
   render() {
     return (
       // <>

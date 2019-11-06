@@ -23,14 +23,18 @@ class FavoritePage extends Component {
           oldOnes: oldOnes
         });
       }
-
+resetNew=()=>{
+this.setState({
+  oldOnes:[]
+})
+}
     render() {
 console.log('this is render')
         return (<div>
             <h1>Here is favorite page</h1>
             <button onClick={this.props.deleteAll}>Delete All</button>
             <button onClick={this.props.resetNew}>Reset All</button>
-            <SearchResult noteObject={this.props.noteObject} recipes={this.props.favorites} faveToggle={this.props.faveToggle} inFave={true} oldOnes={this.state.oldOnes} toggleMark={this.toggleMark} favorites={this.props.favorites} getText={this.props.getText} deleteIt={this.props.deleteIt} handleChange={this.props.handleChange} noteValue={this.props.noteValue} noteBox={this.props.noteBox} starsObject={this.props.starsObject} setStars={this.props.setStars} allStars={this.props.allStars} resetThis={this.props.resetThis} makeStars={this.props.makeStars} addStars={this.props.addStars}/>
+            <SearchResult noteObject={this.props.noteObject} recipes={this.props.favorites} faveToggle={this.props.faveToggle} inFave={true} oldOnes={this.props.oldOnes} toggleMark={this.props.toggleMark} favorites={this.props.favorites} getText={this.props.getText} deleteIt={this.props.deleteIt} handleChange={this.props.handleChange} noteValue={this.props.noteValue} noteBox={this.props.noteBox} starsObject={this.props.starsObject} setStars={this.props.setStars} allStars={this.props.allStars} resetThis={this.props.resetThis} makeStars={this.props.makeStars} addStars={this.props.addStars}/>
 
         </div>
         );
