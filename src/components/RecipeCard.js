@@ -69,7 +69,7 @@ class RecipeCard extends Component {
     // }
 
     render() {
-
+        console.log("this is recipeCard")
         return <div className="card col-md-3 col-sm-6 col-12" style={{ width: "18rem" }}>
             <h5 className="card-header bg-dark" style={{ color: "white" }}>{this.props.recipe.label}</h5>
             <img className="card-img-top" src={this.props.recipe.image} alt={this.props.recipe.lable} />
@@ -104,7 +104,7 @@ class RecipeCard extends Component {
                     </div>
                     <div className="row">
                         <AddIcon faveToggle={this.props.faveToggle} favorites={this.props.favorites} item={this.props.item} />
-                        {(this.props.inFave) ? <Mark style={{ display: "inline" }} setStars={this.props.setStars} starsObject={this.props.starsObject} label={this.props.recipe.label} recipe={this.props.recipe} toggleMark={this.props.toggleMark} oldOnes={this.props.oldOnes} /> : null}
+                        {(this.props.inFave) ? <Mark style={{ display: "inline" }} resetThis={this.props.resetThis} makeStars={this.props.makeStars} allStars={this.props.allStars} setStars={this.props.setStars} starsObject={this.props.starsObject} label={this.props.recipe.label} recipe={this.props.recipe} toggleMark={this.props.toggleMark} oldOnes={this.props.oldOnes} addStars={this.props.addStars}/> : null}
                     </div>
                 </div>
             </div>

@@ -3,10 +3,10 @@ import './App.css';
 import SearchPage from './components/SearchPage';
 import dotenv from 'dotenv';
 // import axios from 'axios';
-import hits from './hits'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import hits from './hits';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import FavoritePage from './components/FavoritePage';
-
+import Star from './components/Star';
 dotenv.config();
 class App extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class App extends Component {
       noteValue: '',
       noteBox: '',
       starsObject:{},
+      allStars:[],
       // oldOnes: [],
     };
   }
@@ -85,13 +86,61 @@ class App extends Component {
 
   }
   resetNew=()=>{
-    console.log('in resetnew')
-    this.setState({starsObject:{}})
+    // console.log('in resetnew')
+    this.setState({
+      starsObject:{},
+    })
   }
   setStars=(index,label)=>{
-    this.state.starsObject[label]=index
+    const starsObject={...this.state.starsObject};
+    starsObject[label]=index;
+    this.setState({
+      starsObject:starsObject
+    })
   }
+  makeStars=()=>{
+    console.log(this.props.starsObject)
+    const allStars= []
+    for(let i = 0; i<5; i++){
+        if(i<=this.state.starred)
+        allStars.push(<Star key={i} index={i} label={this.props.label} addStars={this.addStars} startStatus={"fa fa-star checked"}/>)
+        else{
+            allStars.push(<Star key={i} index={i} label={this.props.label} addStars={this.addStars} startStatus={"fa fa-star"}/>)
 
+        }
+    }
+   
+    allStars.push(<button onClick={()=>this.resetThis(0,this.props.label)}>Reset</button>)
+
+    this.setState({
+        allStars:  allStars
+    })
+}
+resetThis=(index,label)=>{
+  console.log('this is this')
+  this.setStars(index,label)
+  this.setState({
+      starred:0
+  })
+  this.makeStars()
+}
+addStars =(index, label)=>{
+   const allStars=[]
+   for(let i=0; i<5;i++){
+       allStars.push(<Star label={label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star"}/>)
+   }
+   for(let i =0; i<=index;i++ ){
+       console.log('allaslsjflaksdjf', i)
+
+           allStars[i]=<Star  label={label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star checked"}/>
+       
+   }
+   allStars.push(<button onClick={()=>this.props.resetThis(0,this.props.label)}>Reset</button>)
+   this.setState({
+       allStars:allStars
+   })
+   this.props.setStars(index,label)
+}
 //   addStars =(index, label)=>{
 //     console.log('addStars')
 //     const starsObject= this.state.starsObject
@@ -147,7 +196,7 @@ class App extends Component {
         </nav>
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} />} />
-          <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} resetNew={this.resetNew} setStars={this.setStars} starsObject={this.state.starsObject} />} />
+          <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} setStars={this.setStars} starsObject={this.state.starsObject} allStars={this.state.allStars} resetThis={this.resetThis} makeStars={this.makeStars} addStars={this.addStars}/>} />
         </Switch>
       </Router>
 

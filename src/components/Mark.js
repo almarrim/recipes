@@ -10,6 +10,25 @@ class Mark extends Component {
     }
     }
 componentDidMount(){
+    this.makeStars()
+    // console.log(this.props.starsObject)
+    // const allStars= []
+    // for(let i = 0; i<5; i++){
+    //     if(i<=this.state.starred)
+    //     allStars.push(<Star key={i} index={i} label={this.props.label} addStars={this.addStars} startStatus={"fa fa-star checked"}/>)
+    //     else{
+    //         allStars.push(<Star key={i} index={i} label={this.props.label} addStars={this.addStars} startStatus={"fa fa-star"}/>)
+
+    //     }
+    // }
+   
+    // allStars.push(<button onClick={()=>this.resetThis(0,this.props.label)}>Reset</button>)
+
+    // this.setState({
+    //     allStars:  allStars
+    // })
+}
+makeStars=()=>{
     console.log(this.props.starsObject)
     const allStars= []
     for(let i = 0; i<5; i++){
@@ -21,11 +40,20 @@ componentDidMount(){
         }
     }
    
-    allStars.push(<button onClick={this.resetNew}>Reset</button>)
+    allStars.push(<button onClick={()=>this.resetThis(0,this.props.label)}>Reset</button>)
 
     this.setState({
         allStars:  allStars
     })
+}
+
+resetThis=(index,label)=>{
+    console.log('this is this')
+    this.props.setStars(index,label)
+    this.setState({
+        starred:0
+    })
+    this.makeStars()
 }
 addStars =(index, label)=>{
    const allStars=[]
@@ -33,24 +61,18 @@ addStars =(index, label)=>{
        allStars.push(<Star label={this.props.label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star"}/>)
    }
    for(let i =0; i<=index;i++ ){
-       console.log('allaslsjflaksdjf', i)
-
            allStars[i]=<Star  label={this.props.label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star checked"}/>
        
    }
-   allStars.push(<button onClick={this.resetNew}>Reset</button>)
+   allStars.push(<button onClick={()=>this.resetThis(0,this.props.label)}>Reset</button>)
    this.setState({
        allStars:allStars
    })
    this.props.setStars(index,label)
 }
-// const allStars=[
-// <span onClick={()=>addStars(0)} className="fa fa-star"></span>,
-// <span onClick={()=>addStars(1)} className="fa fa-star"></span>,
-// <span onClick={()=>addStars(2)} className="fa fa-star"></span>,
-// <span onClick={()=>addStars(3)} className="fa fa-star"></span>,
-// <span onClick={()=>addStars(4)} className="fa fa-star"></span>]
+
 render(){
+    console.log("this is allstars",this.state.allStars, this.props.label)
     return (<div>
         {this.state.allStars}
 </div>
