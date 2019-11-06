@@ -10,9 +10,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.showMore{
+.showMore {
   color: blue;
 }
-.pointer:hover{
+.pointer:hover {
   cursor: pointer;
+}
+.checked {
+  color: orange;
 }

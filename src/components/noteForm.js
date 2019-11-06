@@ -1,11 +1,31 @@
-import React from 'react'
+import React,{Component} from 'react'
 
-const NoteForm = props => {
+class NoteForm extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            noteBox:this.props.noteBox,
+        }
+    }
 
+    handleChange = (e) => {
+        console.log('handleChange')
+        console.log(e.target.value)
+        this.setState({ 
+            noteBox: e.target.value 
+        })
+      }
+    resetText=(e)=>{
+        this.props.getText(e, this.props.label,this.state.noteBox)
+        this.setState({ 
+            noteBox: ''
+        })
+    }
+      render(){
     return <form >
-        <input type="text" onChange={props.handleChange} value={props.noteBox} />
-        <button onClick={props.getText}>Submit</button>
+        <input type="text" onChange={this.handleChange} value={this.state.noteBox} />
+        <button onClick={this.resetText}>Submit</button>
     </form>
-
+      }
 }
 export default NoteForm;

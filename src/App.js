@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       recipes: [],
       favorites: [],
+      noteObject: {},
       noteValue: '',
       noteBox: '',
       // oldOnes: [],
@@ -56,27 +57,32 @@ class App extends Component {
       favorites: []
     })
   }
-  getText = (e) => {
+  getText = (e, label, noteBox) => {
     e.preventDefault()
+    console.log('this is e ', e)
+    console.log('getText', noteBox)
+    console.log("this label", label);
     
-    console.log('getText', this.state.noteBox)
+    const noteObject = this.state.noteObject;
+    noteObject[label] = noteBox;
     this.setState({
-        noteValue: this.state.noteBox,
-        noteBox: ''
+      noteValue: noteBox,
+      noteBox: '',
+      noteObject: noteObject
     })
 
-}
-deleteIt = () => {
+  }
+  deleteIt = () => {
     console.log('deleteIt')
     this.setState({
-        noteValue: '',
+      noteValue: '',
     })
-};
-handleChange = (e) => {
+  };
+  handleChange = (e) => {
     console.log('handleChange')
-    this.setState({ noteBox: e.target.value })
+    // this.setState({ noteBox: e.target.value })
 
-}
+  }
   //   toggleMark = (e) => {
   //     const oldOnes = this.state.oldOnes
   //     console.log('recipe is ',e,' oldOnes ',oldOnes)
@@ -105,15 +111,15 @@ handleChange = (e) => {
 
       <Router>
 
-        <nav className="navbar navbar-dark bg-dark sticky-top" style={{ fontSize: "2rem", justifyContent: "space-around"}}>
-        {/* <div class="container"> */}
-          <Link className="nav-item nav-link" to='/'>Search</Link> 
-          <Link className="nav-item nav-link"  to='/mylist'>My List</Link>
-        {/* </div> */}
+        <nav className="navbar navbar-dark bg-dark sticky-top" style={{ fontSize: "2rem", justifyContent: "space-around" }}>
+          {/* <div class="container"> */}
+          <Link className="nav-item nav-link" to='/'>Search</Link>
+          <Link className="nav-item nav-link" to='/mylist'>My List</Link>
+          {/* </div> */}
         </nav>
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} />} />
-          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox}/>} />
+          <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} />} />
         </Switch>
       </Router>
 
