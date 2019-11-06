@@ -5,34 +5,44 @@ class Mark extends Component {
     super(props);
     this.state={
         stars:5,
-        starred:0,
+        starred:this.props.starsObject[this.props.label]?this.props.starsObject[this.props.label]:0,
         allStars:[]
     }
     }
- addStars =(index)=>{
-     console.log('addStars')
-    const allStars=[]
-    for(let i=0; i<5;i++){
-        allStars.push(<Star key = {i} index={i} startStatus={"fa fa-star"}/>)
-    }
-    for(let i =0; i<=index;i++ ){
-        console.log('allaslsjflaksdjf', i)
-
-            allStars[i]=<Star key = {i} index={i} startStatus={"fa fa-star checked"}/>
-        
-    }
-    this.setState({
-        allStars:allStars
-    })
-}
 componentDidMount(){
+    console.log(this.props.starsObject)
     const allStars= []
     for(let i = 0; i<5; i++){
-        allStars.push(<Star key={i} index={i} addStars={this.addStars} startStatus={"fa fa-star"}/>)
+        if(i<=this.state.starred)
+        allStars.push(<Star key={i} index={i} label={this.props.label} addStars={this.addStars} startStatus={"fa fa-star checked"}/>)
+        else{
+            allStars.push(<Star key={i} index={i} label={this.props.label} addStars={this.addStars} startStatus={"fa fa-star"}/>)
+
+        }
     }
+   
+    allStars.push(<button onClick={this.resetNew}>Reset</button>)
+
     this.setState({
         allStars:  allStars
     })
+}
+addStars =(index, label)=>{
+   const allStars=[]
+   for(let i=0; i<5;i++){
+       allStars.push(<Star label={this.props.label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star"}/>)
+   }
+   for(let i =0; i<=index;i++ ){
+       console.log('allaslsjflaksdjf', i)
+
+           allStars[i]=<Star  label={this.props.label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star checked"}/>
+       
+   }
+   allStars.push(<button onClick={this.resetNew}>Reset</button>)
+   this.setState({
+       allStars:allStars
+   })
+   this.props.setStars(index,label)
 }
 // const allStars=[
 // <span onClick={()=>addStars(0)} className="fa fa-star"></span>,

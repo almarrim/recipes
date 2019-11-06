@@ -104,7 +104,7 @@ class RecipeCard extends Component {
                     </div>
                     <div className="row">
                         <AddIcon faveToggle={this.props.faveToggle} favorites={this.props.favorites} item={this.props.item} />
-                        {(this.props.inFave) ? <Mark style={{ display: "inline" }} recipe={this.props.recipe} toggleMark={this.props.toggleMark} oldOnes={this.props.oldOnes} /> : null}
+                        {(this.props.inFave) ? <Mark style={{ display: "inline" }} setStars={this.props.setStars} starsObject={this.props.starsObject} label={this.props.recipe.label} recipe={this.props.recipe} toggleMark={this.props.toggleMark} oldOnes={this.props.oldOnes} /> : null}
                     </div>
                 </div>
             </div>

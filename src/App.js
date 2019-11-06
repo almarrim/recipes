@@ -17,6 +17,7 @@ class App extends Component {
       noteObject: {},
       noteValue: '',
       noteBox: '',
+      starsObject:{},
       // oldOnes: [],
     };
   }
@@ -83,6 +84,33 @@ class App extends Component {
     // this.setState({ noteBox: e.target.value })
 
   }
+  resetNew=()=>{
+    console.log('in resetnew')
+    this.setState({starsObject:{}})
+  }
+  setStars=(index,label)=>{
+    this.state.starsObject[label]=index
+  }
+
+//   addStars =(index, label)=>{
+//     console.log('addStars')
+//     const starsObject= this.state.starsObject
+//     starsObject[label]
+//    const allStars=[]
+//    for(let i=0; i<5;i++){
+//        allStars.push(<Star label={this.props.recipe.label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star"}/>)
+//    }
+//    for(let i =0; i<=index;i++ ){
+//        console.log('allaslsjflaksdjf', i)
+
+//            allStars[i]=<Star key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star checked"}/>
+       
+//    }
+//    allStars.push(<button onClick={this.resetNew}>Reset</button>)
+//    this.setState({
+//        allStars:allStars
+//    })
+// }
   //   toggleMark = (e) => {
   //     const oldOnes = this.state.oldOnes
   //     console.log('recipe is ',e,' oldOnes ',oldOnes)
@@ -119,7 +147,7 @@ class App extends Component {
         </nav>
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} />} />
-          <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} />} />
+          <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} resetNew={this.resetNew} setStars={this.setStars} starsObject={this.state.starsObject} />} />
         </Switch>
       </Router>
 
