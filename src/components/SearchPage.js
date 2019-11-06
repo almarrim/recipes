@@ -7,7 +7,7 @@ class SearchPage extends Component {
     render() {
         return (
             <>
-                <SearchForm getResults={this.props.getResults} />
+                <SearchForm getResults={this.props.getResults} handleSearchChange={this.props.handleSearchChange} searchBox={this.props.searchBox}/>
                 <SearchResult recipes={this.props.recipes} faveToggle={this.props.faveToggle} inFave={false} favorites={this.props.favorites} />
             </>
         );

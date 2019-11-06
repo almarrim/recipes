@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchPage from './components/SearchPage';
 import dotenv from 'dotenv';
-// import axios from 'axios';
-import hits from './hits';
+import axios from 'axios';
+// import hits from './hits';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import FavoritePage from './components/FavoritePage';
 import Star from './components/Star';
@@ -20,23 +20,25 @@ class App extends Component {
       starsObject:{},
       allStars:[],
       oldOnes: [],
+      searchBox:''
     };
   }
 
-  getResults = (e) => {
-    e.preventDefault()
-    // const apiURL = `http://api.edamam.com/search?q=chicken&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=5`
-    // axios({
-    //   method: 'get',
-    //   url: apiURL
-    // })
-    //   .then(res => {
-    this.setState({
-      // recipes: res.data.hits,
-      recipes: hits,
+  getResults = (item) => {
+    // e.preventDefault()
+    const apiURL = `http://api.edamam.com/search?q=${item}&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=5`
+    axios({
+      method: 'get',
+      url: apiURL
     })
-    //     })
-    //     .catch(console.error())
+      .then(res => {
+    this.setState({
+      recipes: res.data.hits,
+      searchBox:''
+      // recipes: hits,
+    })
+        })
+        .catch(console.error())
 
   }
   faveToggle = (e) => {
@@ -80,6 +82,9 @@ class App extends Component {
       noteValue: '',
     })
   };
+  handleSearchChange=(e)=>{
+    this.setState({ searchBox: e.target.value })
+  }
   handleChange = (e) => {
     console.log('handleChange')
     // this.setState({ noteBox: e.target.value })
@@ -210,7 +215,7 @@ addStars =(index, label)=>{
           {/* </div> */}
         </nav>
         <Switch>
-          <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} />} />
+          <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} searchBox={this.state.searchBox}/>} />
           <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} setStars={this.setStars} starsObject={this.state.starsObject} allStars={this.state.allStars} resetThis={this.resetThis} makeStars={this.makeStars} addStars={this.addStars}/>} />
         </Switch>
       </Router>
