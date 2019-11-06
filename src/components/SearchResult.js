@@ -6,7 +6,7 @@ const SearchResult = props => {
         return <RecipeCard recipe={item.recipe} key={index} faveToggle={() => props.faveToggle(item)} inFave={props.inFave} toggleMark={props.toggleMark} oldOnes={props.oldOnes} favorites={props.favorites} item={item} />
     }
     )
-    return <>{allRecipes}</>
+    return<div className="row"> {allRecipes}</div>
 
 }
 export default SearchResult;
