@@ -81,9 +81,12 @@ class App extends Component {
       // </>
 
       <Router>
-        <nav>
-          <Link to='/'>search</Link>{' | '}
-          <Link to='/mylist'>thelist</Link>
+
+        <nav className="navbar navbar-dark bg-dark sticky-top" style={{ fontSize: "2rem", justifyContent: "space-around"}}>
+        {/* <div class="container"> */}
+          <Link className="nav-item nav-link" to='/'>Search</Link> 
+          <Link className="nav-item nav-link"  to='/mylist'>My List</Link>
+        {/* </div> */}
         </nav>
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} />} />
