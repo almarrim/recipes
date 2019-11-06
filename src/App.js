@@ -14,6 +14,10 @@ class App extends Component {
     this.state = {
       recipes: [],
       favorites: [],
+      noteObject: {},
+      noteValue: '',
+      noteBox: '',
+      starsObject:{},
       // oldOnes: [],
     };
   }
@@ -54,25 +58,78 @@ class App extends Component {
       favorites: []
     })
   }
-//   toggleMark = (e) => {
-//     const oldOnes = this.state.oldOnes
-//     console.log('recipe is ',e,' oldOnes ',oldOnes)
-//     if (oldOnes.includes(e)) {
-//       console.log('it is in status')
-//       oldOnes.splice(oldOnes.indexOf(e), 1)
-//     }
-//     else {
-//       console.log('in else')
-//       oldOnes.push(e)
-//     }
-//     this.setState({
-//       oldOnes: oldOnes
-//     });
-//   }
-// resetNew=()=>{
-//   console.log('in resetnew')
-//   this.setState({status:'New',oldOnes:[]})
+  getText = (e, label, noteBox) => {
+    e.preventDefault()
+    console.log('this is e ', e)
+    console.log('getText', noteBox)
+    console.log("this label", label);
+    
+    const noteObject = this.state.noteObject;
+    noteObject[label] = noteBox;
+    this.setState({
+      noteValue: noteBox,
+      noteBox: '',
+      noteObject: noteObject
+    })
+
+  }
+  deleteIt = () => {
+    console.log('deleteIt')
+    this.setState({
+      noteValue: '',
+    })
+  };
+  handleChange = (e) => {
+    console.log('handleChange')
+    // this.setState({ noteBox: e.target.value })
+
+  }
+  resetNew=()=>{
+    console.log('in resetnew')
+    this.setState({starsObject:{}})
+  }
+  setStars=(index,label)=>{
+    this.state.starsObject[label]=index
+  }
+
+//   addStars =(index, label)=>{
+//     console.log('addStars')
+//     const starsObject= this.state.starsObject
+//     starsObject[label]
+//    const allStars=[]
+//    for(let i=0; i<5;i++){
+//        allStars.push(<Star label={this.props.recipe.label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star"}/>)
+//    }
+//    for(let i =0; i<=index;i++ ){
+//        console.log('allaslsjflaksdjf', i)
+
+//            allStars[i]=<Star key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star checked"}/>
+       
+//    }
+//    allStars.push(<button onClick={this.resetNew}>Reset</button>)
+//    this.setState({
+//        allStars:allStars
+//    })
 // }
+  //   toggleMark = (e) => {
+  //     const oldOnes = this.state.oldOnes
+  //     console.log('recipe is ',e,' oldOnes ',oldOnes)
+  //     if (oldOnes.includes(e)) {
+  //       console.log('it is in status')
+  //       oldOnes.splice(oldOnes.indexOf(e), 1)
+  //     }
+  //     else {
+  //       console.log('in else')
+  //       oldOnes.push(e)
+  //     }
+  //     this.setState({
+  //       oldOnes: oldOnes
+  //     });
+  //   }
+  // resetNew=()=>{
+  //   console.log('in resetnew')
+  //   this.setState({status:'New',oldOnes:[]})
+  // }
   render() {
     return (
       // <>
@@ -81,13 +138,16 @@ class App extends Component {
       // </>
 
       <Router>
-        <nav>
-          <Link to='/'>search</Link>{' | '}
-          <Link to='/mylist'>thelist</Link>
+
+        <nav className="navbar navbar-dark bg-dark sticky-top" style={{ fontSize: "2rem", justifyContent: "space-around" }}>
+          {/* <div class="container"> */}
+          <Link className="nav-item nav-link" to='/'>Search</Link>
+          <Link className="nav-item nav-link" to='/mylist'>My List</Link>
+          {/* </div> */}
         </nav>
         <Switch>
-          <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />} />
-          <Route path='/mylist' render={() => <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes}/>} />
+          <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} />} />
+          <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} resetNew={this.resetNew} setStars={this.setStars} starsObject={this.state.starsObject} />} />
         </Switch>
       </Router>
 

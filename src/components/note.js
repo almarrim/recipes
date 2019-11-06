@@ -5,34 +5,36 @@ import NoteBoard from './noteBoard';
 class Note extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            noteBox: '',
-            noteValue: '',
+        // this.state = {
+        //     noteBox: '',
+        //     noteValue: '',
 
-        }
+        // }
     }
-    getText = (e) => {
-        e.preventDefault()
-        this.setState({
-            noteValue: this.state.noteBox,
-            noteBox: ''
-        })
+    // getText = (e) => {
+    //     e.preventDefault()
+    //     this.setState({
+    //         noteValue: this.state.noteBox,
+    //         noteBox: ''
+    //     })
 
-    }
-    handleChange = (e) => {
-        this.setState({ noteBox: e.target.value })
-    }
-    deleteIt = () => {
-        this.setState({
-            noteValue: '',
-        })
-    }
+    // }
+    // deleteIt = () => {
+    //     this.setState({
+    //         noteValue: '',
+    //     })
+    // }
+    // handleChange = (e) => {
+    //     this.setState({ noteBox: e.target.value })
+
+    // }
 
     render() {
+        console.log("this is label", this.props.label)
         return (
             <>
-                <NoteForm getText={this.getText} handleChange={this.handleChange} noteBox={this.state.noteBox} />
-                <NoteBoard noteValue={this.state.noteValue} deleteIt={this.deleteIt} />
+                <NoteForm noteObject={this.props.noteObject} label={this.props.label} getText={this.props.getText} handleChange={this.props.handleChange} noteBox={this.props.noteBox} />
+                <NoteBoard noteObject={this.props.noteObject} label={this.props.label} noteValue={this.props.noteValue} deleteIt={this.props.deleteIt} />
             </>
         );
     }
