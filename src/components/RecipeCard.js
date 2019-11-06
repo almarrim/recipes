@@ -7,10 +7,20 @@ constructor(props){
     super(props);
     this.state={
         noteSide:false,
-        ingSide:true
+        ingSide:true,
+        showMore:false,
+        showWord:'...more',
+
     }
 }
-
+componentDidMount(){
+    const ingredients = this.props.recipe.ingredientLines.map((item, index) => {        
+        return <li key={index}>{item}</li>})
+        this.setState({
+            ingredients:ingredients,
+            subIng:ingredients.slice(0,3)
+        })
+}
 switchNote= ()=> {
     this.setState({
 
@@ -25,10 +35,14 @@ switchIng= ()=> {
         ingSide:true
     })
 }
-render(){
-    const ingredients = this.props.recipe.ingredientLines.map((item, index) => {
-        return <li key={index}>{item}</li>
+showMore=()=>{
+    this.setState({
+        showMore:!this.state.showMore,
+        showWord:(this.state.showWord=='...more')?'Less.':'...more',
     })
+}
+render(){
+
     return <div className="card"  style={{width: "18rem"}}>
         <h5 className="card-header">{this.props.recipe.label}</h5>
         <img className="card-img-top" src={this.props.recipe.image} alt={this.props.recipe.lable} />
@@ -50,7 +64,8 @@ render(){
         <div>
         <ul>
         <p className="card-text">
-        {ingredients}
+            {(this.state.showMore)?this.state.ingredients: this.state.subIng}<span className="showMore pointer" onClick={this.showMore}>{this.state.showWord}</span>
+        {/* {this.state.ingredients} */}
         </p>
         </ul>
         <a  className="btn btn-primary" href={this.props.recipe.url}>More info on {`${this.props.recipe.source}`}</a>
