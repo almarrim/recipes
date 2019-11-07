@@ -26,7 +26,7 @@ class App extends Component {
 
   getResults = (item) => {
     // e.preventDefault()
-    const apiURL = `http://api.edamam.com/search?q=${item}&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=5`
+    const apiURL = `http://api.edamam.com/search?q=${item}&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=20`
     axios({
       method: 'get',
       url: apiURL
@@ -211,7 +211,7 @@ addStars =(index, label)=>{
         <nav className="navbar navbar-dark bg-dark sticky-top" style={{ fontSize: "2rem", justifyContent: "space-around" }}>
           {/* <div class="container"> */}
           <Link className="nav-item nav-link" to='/'>Search</Link>
-          <Link className="nav-item nav-link" to='/mylist'>My List</Link>
+          <Link className="nav-item nav-link" to='/mylist'>My List{' | '}{ this.state.favorites.length}</Link>
           {/* </div> */}
         </nav>
         <Switch>
