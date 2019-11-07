@@ -25,7 +25,6 @@ class App extends Component {
   }
 
   getResults = (item) => {
-    // e.preventDefault()
     const apiURL = `http://api.edamam.com/search?q=${item}&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=20`
     axios({
       method: 'get',
@@ -91,7 +90,6 @@ class App extends Component {
 
   }
   resetNew=()=>{
-    // console.log('in resetnew')
     this.setState({
       starsObject:{},
     })
@@ -146,40 +144,7 @@ addStars =(index, label)=>{
    })
    this.props.setStars(index,label)
 }
-//   addStars =(index, label)=>{
-//     console.log('addStars')
-//     const starsObject= this.state.starsObject
-//     starsObject[label]
-//    const allStars=[]
-//    for(let i=0; i<5;i++){
-//        allStars.push(<Star label={this.props.recipe.label} key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star"}/>)
-//    }
-//    for(let i =0; i<=index;i++ ){
-//        console.log('allaslsjflaksdjf', i)
 
-//            allStars[i]=<Star key = {i} index={i} addStars={this.addStars} startStatus={"fa fa-star checked"}/>
-       
-//    }
-//    allStars.push(<button onClick={this.resetNew}>Reset</button>)
-//    this.setState({
-//        allStars:allStars
-//    })
-// }
-  //   toggleMark = (e) => {
-  //     const oldOnes = this.state.oldOnes
-  //     console.log('recipe is ',e,' oldOnes ',oldOnes)
-  //     if (oldOnes.includes(e)) {
-  //       console.log('it is in status')
-  //       oldOnes.splice(oldOnes.indexOf(e), 1)
-  //     }
-  //     else {
-  //       console.log('in else')
-  //       oldOnes.push(e)
-  //     }
-  //     this.setState({
-  //       oldOnes: oldOnes
-  //     });
-  //   }
   toggleMark = (e) => {
     const oldOnes = this.state.oldOnes
     console.log('recipe is ',e,' oldOnes ',oldOnes)
@@ -201,19 +166,14 @@ addStars =(index, label)=>{
   }
   render() {
     return (
-      // <>
-      //   <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} />
-      //   <FavoritePage favorites={this.state.favorites} faveToggle={this.faveToggle} />
-      // </>
 
       <Router>
 
         <nav className="navbar navbar-dark bg-dark sticky-top" style={{ fontSize: "2rem", justifyContent: "space-around" }}>
-          {/* <div class="container"> */}
           <Link className="nav-item nav-link" to='/'>Search</Link>
           <Link className="nav-item nav-link" to='/mylist'>My List{' | '}{ this.state.favorites.length}</Link>
-          {/* </div> */}
         </nav>
+
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} searchBox={this.state.searchBox}/>} />
           <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} setStars={this.setStars} starsObject={this.state.starsObject} allStars={this.state.allStars} resetThis={this.resetThis} makeStars={this.makeStars} addStars={this.addStars}/>} />
