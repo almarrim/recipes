@@ -11,6 +11,7 @@ Recipes is an app that generates cooking recipes based on a food item searched b
 - [Material Icons](https://material.io/resources/icons/?style=baseline)
 - [npm](https://www.npmjs.com)
 - [axios](https://www.npmjs.com/package/axios)
+- [dotenv](https://www.npmjs.com/package/dotenv)
 - [EDAMAM API](https://www.edamam.com)
 - Text Editer
 - Web browser
