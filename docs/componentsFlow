@@ -1,0 +1,36 @@
+
+
+1.Components:
+	-App(Container)
+		- ~ Search Page
+			- X search box
+			- X submit button
+			- X results(Container)
+				-Xresult cards
+					-Ximg
+					-Xtitle
+					-Xinfo
+					-Xurl							
+					-Xadd button
+		-List Page
+			-Xselected cards(container)
+				-Xresult cards (same more or less as the resutl cards from search page)
+					-img
+					-title
+					-info
+					-url
+					-add/remove button
+					-new/tried icon
+					-note side button(flips the result card)
+					-notes(text box)
+					-submit notes button
+
+2.Props:
+	-Recipes
+		-title
+		-img
+		-url (more details url)
+3.State:
+	-Recipes
+	-notes
+	-favorite

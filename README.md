@@ -1,68 +1,44 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# [Recipes (APP)]( https://almarrim.github.io/recipes/):
+Recipes is an app that generates cooking recipes based on a food item searched by the user. Recipes can be added to a list, marked as new/old and notes can be added to recipe cards in the list. You can visit the app [here](https://almarrim.github.io/recipes/)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Technologies Used:
+- HTML
+- CSS
+- JavaScript
+- [Reactjs](https://reactjs.org)
+- [Bootstrap](https://getbootstrap.com)
+- [Material Icons](https://material.io/resources/icons/?style=baseline)
+- [npm](https://www.npmjs.com)
+- Text Editer
+- Web browser
 
-### `npm start`
+## Planning:
+1. [User Stories](./docs/userStories.txt):
+![User Stories](./screenshots/userStories.png)
+2. Wireframes:
+    - ![wireframe 1](./screenshots/image1.jpg)
+    - ![wireframe 2](./screenshots/image2.jpg)
+3. [Components-Flow](./docs/componentsFlow)
+![Componets-Flow](./screenshots/componentsFlow.png)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Implementation:
+`create-react-app` was used to set the skeleton of our project. Then based on the [Components-Flow](./docs/componentsFlow) document, The project's components were built one by one. I was able to effeciently use all the compoents of the search page in the list page, while making components show addtional child-components when in the list page.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Future Iterations:
+[User Stories](./docs/userStories.txt) clearly show main and extra stories. All the main stories has been accomplished. The extra user stories would be a plan for future iteration of the project.
+![User Stories](./screenshots/userStories.png)
 
-### `npm test`
+## How it works:
+1. Search for a desired food item in the search box:
+![home](./screenshots/homePage.png)
+2. Select a recipe from the results. Each recipe would have ingredients, an add button, and an external link for more details and how to make it.
+![results](./screenshots/searchResults.png)
+3. In the List page, you can add notes, mark as a new or an old recipe you want to save, or delete unwanted recipe.
+![recipeCard](./screenshots/recipeCard.png)
+4. You can delete or reset all cards to new in the list page.
+![listpage](./screenshots/myList.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Author:
+Mohammed Almarri
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

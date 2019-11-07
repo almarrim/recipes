@@ -1,0 +1,15 @@
+main:
+-as a user, I can use a food item to search for a cooking recipe
+-as a user, I can select a recipe to add it to a personal list
+-as a user, I want to add notes to added recipes to view them later
+-as a user, I want to mark a recipe as tried if it has been tried
+-as a user, I want to unmark/remove recipes from the list
+-as a user, I want to clear the recipe list
+--------------------
+extra:
+-as a user, I want to add search parameters(calories, high protein etc..) to narrow my search
+-as a user, I want to have nutrients details in my recipe card
+-as a user, I want to edit my recipe and find the new food nutrient value
+-as a user, I want to save my list to be able to visit it later
+-as a user, I want to rate recipes in my list
+-as a user, I want to know recipes diet category (vegetarian, gluten free etc..)	
