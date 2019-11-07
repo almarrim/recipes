@@ -12,6 +12,7 @@ Recipes is an app that generates cooking recipes based on a food item searched b
 - [npm](https://www.npmjs.com)
 - [axios](https://www.npmjs.com/package/axios)
 - [dotenv](https://www.npmjs.com/package/dotenv)
+- [router-dom](https://reacttraining.com/react-router/web/guides/quick-start)
 - [EDAMAM API](https://www.edamam.com)
 - Text Editer
 - Web browser
