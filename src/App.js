@@ -21,13 +21,16 @@ class App extends Component {
       recipes: [], //this is the state that carries all the recipes to the search result page and downward to child-components.
       favorites: [],//this is the state that carries the selected recipes to the favorite page and downward.
       noteObject: {},//this is an object the consists of recipe name as a key and the text note as a value. it is uesd to prevent notes from being lost when going to other pages in the app
-      noteValue: '',
-      noteBox: '',
-      oldOnes: [],
-      searchBox: ''
+      noteValue: '',//used with notes
+      noteBox: '',//used with notes to carry the text to the noteobject
+      oldOnes: [],//this is the array that carries the old(tried) recipes
+      searchBox: '',//this is the search box text in the search page
+      starsObject:{},
     };
   }
-
+/*
+getResults is where the axios gets called. getResults takes the searchBox text as item and pass it to the axios through the url. getResults then assign the results to recipes, where it the data get used to show the needed info. Also, refreshes the searchBox and set it empty again.
+*/
   getResults = (item) => {
     const apiURL = `http://api.edamam.com/search?q=${item}&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=20`
     axios({
@@ -44,6 +47,9 @@ class App extends Component {
       .catch(console.error())
 
   }
+  /*
+faveToggle is the function that is responsible for adding removing recipes from the favorite list page.
+  */
   faveToggle = (e) => {
     const favorites = [...this.state.favorites]
     if (favorites.includes(e)) {
@@ -59,17 +65,17 @@ class App extends Component {
       favorites: favorites
     })
   }
+  //Deletes all the recipes from the favorite page
   deleteAll = () => {
     this.setState({
       favorites: []
     })
   }
+/*
+getText is the method responsible for taking the note text and passing it to the object with the related key, and it refreshes the textbox of the note tap. label is the recipe name(the key). noteBox is the value. e is the event.
+*/
   getText = (e, label, noteBox) => {
     e.preventDefault()
-    console.log('this is e ', e)
-    console.log('getText', noteBox)
-    console.log("this label", label);
-
     const noteObject = this.state.noteObject;
     noteObject[label] = noteBox;
     this.setState({
@@ -79,12 +85,18 @@ class App extends Component {
     })
 
   }
-  deleteIt = () => {
+  //delete only the attached note
+  deleteIt = (item) => {
     console.log('deleteIt')
+    const noteObject={...this.state.noteObject}
+    delete noteObject[item]
     this.setState({
       noteValue: '',
+      noteObject:noteObject
+
     })
   };
+  //this updates the searchBox, which get passed to the api. and allows continues writing
   handleSearchChange = (e) => {
     this.setState({ searchBox: e.target.value })
   }
@@ -93,6 +105,7 @@ class App extends Component {
     // this.setState({ noteBox: e.target.value })
 
   }
+  //
   resetNew = () => {
     this.setState({
       starsObject: {},
