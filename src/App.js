@@ -181,6 +181,9 @@ getText is the method responsible for taking the note text and passing it to the
     console.log('in resetnew')
     this.setState({ status: 'New', oldOnes: [] })
   }
+  resetNotes = ()=>{
+    this.setState({noteObject:{}})
+  }
   render() {
     return (
 
@@ -193,7 +196,7 @@ getText is the method responsible for taking the note text and passing it to the
 
         <Switch>
           <Route exact path='/' render={() => <SearchPage getResults={this.getResults} recipes={this.state.recipes} faveToggle={this.faveToggle} favorites={this.state.favorites} searchBox={this.state.searchBox} />} />
-          <Route path='/mylist' render={() => <FavoritePage noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} setStars={this.setStars} starsObject={this.state.starsObject} allStars={this.state.allStars} resetThis={this.resetThis} makeStars={this.makeStars} addStars={this.addStars} />} />
+          <Route path='/mylist' render={() => <FavoritePage resetNotes={this.resetNotes} noteObject={this.state.noteObject} favorites={this.state.favorites} faveToggle={this.faveToggle} deleteAll={this.deleteAll} toggleMark={this.toggleMark} resetNew={this.resetNew} oldOnes={this.state.oldOnes} getText={this.getText} deleteIt={this.deleteIt} handleChange={this.handleChange} noteValue={this.state.noteValue} noteBox={this.state.noteBox} setStars={this.setStars} starsObject={this.state.starsObject} allStars={this.state.allStars} resetThis={this.resetThis} makeStars={this.makeStars} addStars={this.addStars} />} />
         </Switch>
       </Router>
 
