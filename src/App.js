@@ -33,7 +33,7 @@ class App extends Component {
   getResults is where the axios gets called. getResults takes the searchBox text as item and pass it to the axios through the url. getResults then assign the results to recipes, where it the data get used to show the needed info. Also, refreshes the searchBox and set it empty again.
   */
   getResults = (item) => {
-    const apiURL = `http://api.edamam.com/search?q=${item}&app_id=${process.env.REACT_APP_EDMAME_API_ID}&ap_key=${process.env.REACT_APP_EDMAME_API_KE}&from=0&to=20`
+    const apiURL = `https://api.edamam.com/search?q=${item}&app_id=${process.env.REACT_APP_EDMAME_API_ID}&app_key=${process.env.REACT_APP_EDMAME_API_KEY}&from=0&to=20`
     axios({
       method: 'get',
       url: apiURL
